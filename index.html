@@ -154,21 +154,32 @@
 					<img src="https://i.imgur.com/aTZoxU8.png">
 					<img src="https://i.imgur.com/NvlzWQw.png">
 					</section>
+					<section>
+					<h3>Un bot multifunción</h3>
+					<p>
+						Y mucho más, todo ello documentado en el <code><a href="http://telegra.ph/Ayuda-12-24" target="_blank">/help</a></code> que ofrece el bot</p>
+					<img src="https://i.imgur.com/cayMEJf.png">
+					<img src="https://i.imgur.com/shJ8YzK.png">
+					</section>
 					
 				</section>
 
 				<section>
 					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
+						<h2>Primer uso de la API</h2>
+						<p>En primer lugar crearemos un archivo Python.</p>
+						<p><pre><code class="hljs" data-trim contenteditable>
+						import telebot
+						bot = telebot.TeleBot("TOKEN")
+						</code></pre></p>
+						
+						<p><span class="fragment">Sustituiremos el TOKEN por el correspondiente a nuestro bot.</span><p> </p><span class="fragment">Lo encontraremos en @Botfather</span></p>
 
 						<aside class="notes">
 							This slide has fragments which are also stepped through in the notes window.
 						</aside>
 					</section>
-					<section>
+					<!--<section>
 						<h2>Fragment Styles</h2>
 						<p>There's different types of fragments, like:</p>
 						<p class="fragment grow">grow</p>
@@ -183,20 +194,46 @@
 						<p class="fragment fade-in-then-out">fade-in-then-out</p>
 						<p class="fragment fade-in-then-semi-out">fade-in-then-semi-out</p>
 						<p>Highlight <span class="fragment highlight-red">red</span> <span class="fragment highlight-blue">blue</span> <span class="fragment highlight-green">green</span></p>
-					</section>
+					</section>-->
 				</section>
 
 				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=slide#/transitions">Slide</a> -
-						<a href="?transition=convex#/transitions">Convex</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a>
+					<section>
+					<h3>Tratando comandos</h3>
+
+					<p>Vamos a explicar este pequeño trozo de código.
+					<br> En primer lugar, seguido de un @ vemos un decorador de python.
 					</p>
+					<p><pre><code class="hljs" data-trim contenteditable>
+						@bot.message_handler(commands=['prueba'])
+						def bienvenida(message):
+							bot.reply_to(message, "Hola, esto funciona")
+						</code></pre></p>
+					</section>
+					<section>
+					<h3>Tratando comandos</h3>
+
+					<p>Usaremos el decorador para filtrar el caso en el que el bot ejecutará esa función.
+					<br>En este caso, solo se ejecutará si ponemos <code>/prueba</code>.
+					</p>
+					<p><pre><code class="hljs" data-trim contenteditable>
+						@bot.message_handler(commands=['prueba'])
+						def bienvenida(message):
+							bot.reply_to(message, "Hola, esto funciona")
+						</code></pre></p>
+					</section>
+					<section>
+					<h3>Tratando comandos</h3>
+
+					<p>Este pequeño código devuelve el mensaje que recibimos.
+					<br>En este caso, todos los mensajes pasan a través del decorador.
+					</p>
+					<p><pre><code class="hljs" data-trim contenteditable>
+						@bot.message_handler(func=lambda m: True)
+						def echo_all(message):
+							bot.reply_to(message, message.text)
+						</code></pre></p>
+					</section>
 				</section>
 
 				<section id="themes">
