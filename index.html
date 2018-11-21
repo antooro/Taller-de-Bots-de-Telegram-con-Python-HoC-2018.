@@ -237,22 +237,24 @@
 				</section>
 
 				<section id="themes">
-					<h2>Themes</h2>
+				
+					<section >
+					<h2>Ejecución de un bot</h2>
 					<p>
-						reveal.js comes with a few themes built in: <br>
-						<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/blood.css'); return false;">Blood</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
-						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
+					Un bot no es un programa que ejecutemos y finalice, realizando una acción concreta.
+					<br>Es un programa que responde a llamadas que no sabemos cuando se van a producir, por tanto debe tener un sistema de espera síncrona o asíncrona.
 					</p>
+					</section>
+					<section >
+					<h2>Ejecución de un bot</h2>
+					<p>
+					Usaremos polling, que explicado de una manera sencilla, se dedica a preguntar repetidas veces al programa si hay algo que tratar, hasta que suceda algún evento y pueda actuar.
+					<br><br> Por tanto debemos añadir esto al final del programa.
+					</p>
+					<p><pre><code class="hljs" data-trim contenteditable>
+						bot.polling()
+						</code></pre></p>
+					</section>
 				</section>
 
 				<section>
