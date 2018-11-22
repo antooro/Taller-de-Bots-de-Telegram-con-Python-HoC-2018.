@@ -259,38 +259,123 @@
 
 				<section>
 					<section>
-						<h2>Tipos disponibles en la API</h2>
+						<h3>Tipos disponibles en la API</h3>
 					<p>User
 					</p>
 					<p><pre><code class="hljs" data-trim contenteditable>
 						{
-						"id": "Integer.Unique identifier for this user or bot",
-						"is_bot": "Boolean.rue, if this user is a bot",
-						"first_name": "String.User‘s or bot’s first name",
-						"last_name": "String.Optional. User‘s or bot’s last name",
-						"username": "String.Optional. User‘s or bot’s username",
-						"language_code": "String.Optional.IETF language tag"
+							"id": "Integer.Unique identifier for this user or bot",
+							"is_bot": "Boolean.rue, if this user is a bot",
+							"first_name": "String.User‘s or bot’s first name",
+							"last_name": "String.Optional. User‘s or bot’s last name",
+							"username": "String.Optional. User‘s or bot’s username",
+							"language_code": "String.Optional.IETF language tag"
 						}
 						</code></pre></p>
 						
 					</section>
+					<section>
+						<h3>Tipos disponibles en la API</h3>
+					<p>Message
+					</p>
+					<p><pre><code class="hljs" data-trim contenteditable>
+						{
+							"content_type": "text",
+							"message_id": 5,
+							"from_user": 
+							{
+								"id": 12028552,
+								"is_bot": false,
+								"first_name": "Antonio",
+								"username": "antooro",
+								"last_name": null,
+								"language_code": "es"
+							},
+							"date": 1542913225,
+							"forward_from_chat": null,
+							"forward_from": null,
+							"forward_date": null,
+							"reply_to_message": null
+						}
+						</code></pre></p>
+						
+					</section>
+					<section>
+						<h3>Tipos disponibles en la API</h3>
+					<p>Chat
+					</p>
+					<p><pre><code class="hljs" data-trim contenteditable>
+						{
+							"type": "private",
+							"last_name": null,
+							"first_name": "Antonio",
+							"username": "antooro",
+							"id": 12028552,
+							"title": null,
+							"all_members_are_administrators": null,
+							"photo": null,
+							"description": null,
+							"invite_link": null,
+							"pinned_message": null,
+							"sticker_set_name": null,
+							"can_set_sticker_set": null
+						}
+						</code></pre></p>
+						
+					</section>
+					<section>
+					<h3>Tipos disponibles en la API</h3>
+					<p>
+					Y muchos más... Audio,Video,Document,Animation,Voice.
+					Todos ellos accesibles mediante los documentos oficiales de la api de <a href="https://core.telegram.org/bots/api#available-types"> telegram</a>.
+					</p>
+					</section>
+				</section>
+
+				<section >
+					<section>	
+					<h2>Bot de saludo a usuarios</h2>
+					<p>
+						Usaremos lo aprendido respecto a los tipos de datos que nos proporciona la API.
+						Obtenemos el nombre de <code>message.first_name</code> y <code>message.last_name</code>
+					</p>
+					</section>
+					<section>
+					<h2>Bot de saludo a usuarios</h2>
+					<p>
+						import telebot
+					</p>
+					<pre><code class="hljs" data-trim contenteditable>
+					bot = telebot.TeleBot("API-KEY")
+					@bot.message_handler(func=lambda m: True)
+					def echo_all(message):
+						m = message.from_user.first_name
+						if message.from_user.last_name is not None: 
+							m+=message.from_user.last_name
+						bot.reply_to(message,m )
+					bot.polling()
+					</code></pre></p>					
 					
 				</section>
 
-				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
-					<p>
-						Different background transitions are available via the backgroundTransition option. This one's called "zoom".
-					</p>
-					<pre><code class="hljs">Reveal.configure({ backgroundTransition: 'zoom' })</code></pre>
 				</section>
 
-				<section data-transition="slide" data-background="#b5533c" data-background-transition="zoom">
-					<h2>Background Transitions</h2>
+				<section>
+					<h2>Bot de saludo a usuarios</h2>
 					<p>
-						You can override background transitions per-slide.
+						import telebot
 					</p>
-					<pre><code class="hljs" style="word-wrap: break-word;">&lt;section data-background-transition="zoom"&gt;</code></pre>
+					<pre><code class="hljs" data-trim contenteditable>
+					bot = telebot.TeleBot("API-KEY")
+					@bot.message_handler(func=lambda m: True)
+					def echo_all(message):
+						m = message.from_user.first_name
+						if message.from_user.last_name is not None: 
+							m+=message.from_user.last_name
+						bot.reply_to(message,m )
+					bot.polling()
+					</code></pre></p>					
+					
 				</section>
 
 				<section>
