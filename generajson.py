@@ -12,7 +12,7 @@ def store_photo(message):
     photos.put(message.photo[1].file_id)
     
 
-@bot.message_handler(commands=['get'])
+@bot.message_handler(func=lambda message: message.from_user.username == 'antooro', commands=["get"])
 def get_photo(message):
     photo_id = photos.get()
     bot.send_photo(message.chat.id , photo_id)
