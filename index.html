@@ -555,14 +555,15 @@ from queue import Queue
 
 photos = Queue()
 
-@bot.message_handler(content_types=['voice'])
+@bot.message_handler(content_types=['photo'])
 def store_photo(message):
-	photos.put(message.photo.file_id)
+    photos.put(message.photo[1].file_id)
+    
 
 @bot.message_handler(commands=['get'])
 def get_photo(message):
-	photo_id = photos.get()
-	bot.send_photo(message.chat.id , photo_id)
+    photo_id = photos.get_nowait()
+    bot.send_photo(message.chat.id , photo_id)
 
 							</code></pre>
 								
