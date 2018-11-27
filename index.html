@@ -43,7 +43,7 @@
 				<section>
 					<h3>Hour Of Code 2018</h3>
 					<h4>Taller de Bots de Telegram con Python</h4>
-					
+
 				</section>
 
 				<section>
@@ -63,7 +63,7 @@
 						pip --version
 						</code></pre>
 						<br>
-						
+
 					</section>
 					<section>
 						<h2>Como instalar PIP</h2>
@@ -77,10 +77,10 @@
 					<section>
 						<h2>Como instalar PIP</h2>
 						<h4>Windows</h4>
-						<p>En principio, al instalar Python siguiendo los pasos y añadir Python al path, no tendriamos problema con pip y no 
+						<p>En principio, al instalar Python siguiendo los pasos y añadir Python al path, no tendriamos problema con pip y no
 						necesitariamos instalarlo. Pero hay una solución por si surgen problemas.</p>
 						<p>Tendremos que descargar un script desde este <a href="https://www.makeuseof.com/tag/install-pip-for-python/" target="_blank">link</a>.</p>
-						
+
 					</section>
 				</section>
 
@@ -89,7 +89,7 @@
 					<p>
 						Es un módulo de Python que nos va a permitir interactuar con la api de Telegram.
 					</p>
-					<p>	
+					<p>
 						Podeis encontrar una gran cantidad de documentacion del mismo en su <a href="https://github.com/eternnoir/pyTelegramBotAPI" target="_blank">github</a>, ya que no podremos tratarlo todo en este taller.
 					</p>
 				</section>
@@ -121,7 +121,7 @@
 					<h2>Creación de Bot con @botfather</h2>
 					<p>
 						El primer paso es ir a nuestro cliente de Telegram, en cualquier dispositivo e iniciar una conversación con  <a href="https://t.me/botfather" target="_blank">@Botfather</a>.</p>
-					
+
 
 					</section>
 					<section>
@@ -161,7 +161,7 @@
 					<img src="https://i.imgur.com/cayMEJf.png">
 					<img src="https://i.imgur.com/shJ8YzK.png">
 					</section>
-					
+
 				</section>
 
 				<section>
@@ -172,7 +172,7 @@
 						import telebot
 						bot = telebot.TeleBot("TOKEN")
 						</code></pre></p>
-						
+
 						<p><span class="fragment">Sustituiremos el TOKEN por el correspondiente a nuestro bot.</span><p> </p><span class="fragment">Lo encontraremos en @Botfather</span></p>
 
 						<aside class="notes">
@@ -237,7 +237,7 @@
 				</section>
 
 				<section id="themes">
-				
+
 					<section >
 					<h2>Ejecución de un bot</h2>
 					<p>
@@ -272,7 +272,7 @@
 							"language_code": "String.Optional.IETF language tag"
 						}
 						</code></pre></p>
-						
+
 					</section>
 					<section>
 						<h3>Tipos disponibles en la API</h3>
@@ -282,7 +282,7 @@
 						{
 							"content_type": "text",
 							"message_id": 5,
-							"from_user": 
+							"from_user":
 							{
 								"id": 12028552,
 								"is_bot": false,
@@ -298,7 +298,7 @@
 							"reply_to_message": null
 						}
 						</code></pre></p>
-						
+
 					</section>
 					<section>
 						<h3>Tipos disponibles en la API</h3>
@@ -321,7 +321,7 @@
 							"can_set_sticker_set": null
 						}
 						</code></pre></p>
-						
+
 					</section>
 					<section>
 					<h3>Tipos disponibles en la API</h3>
@@ -333,7 +333,7 @@
 				</section>
 
 				<section >
-					<section>	
+					<section>
 					<h2>Bot de saludo a usuarios</h2>
 					<p>
 						Usaremos lo aprendido respecto a los tipos de datos que nos proporciona la API.
@@ -350,12 +350,12 @@
 					@bot.message_handler(func=lambda m: True)
 					def echo_all(message):
 						m = message.from_user.first_name
-						if message.from_user.last_name is not None: 
+						if message.from_user.last_name is not None:
 							m+=message.from_user.last_name
 						bot.reply_to(message,m )
 					bot.polling()
-					</code></pre></p>					
-					
+					</code></pre></p>
+
 				</section>
 
 				</section>
@@ -370,14 +370,14 @@
 					@bot.message_handler(func=lambda m: True)
 					def echo_all(message):
 						m = message.from_user.first_name
-						if message.from_user.last_name is not None: 
+						if message.from_user.last_name is not None:
 							m+=message.from_user.last_name
 						bot.reply_to(message,m )
 					bot.polling()
-					</code></pre></p>					
-					
+					</code></pre></p>
+
 				</section>
-				
+
 				<section>
 
 					<section>
@@ -452,22 +452,22 @@ bot.send_chat_action(chat_id, action_string)
 						<p>
 							Este comando se ejecuta al iniciar la conversación con el bot
 						</p>
-						
+
 						<h3></h3>
 						<pre><code class="hljs">
 @bot.message_handler(commands=['start'])
 def handle_start(message):
 	pass
 						</code></pre>
-							
+
 					</section>
 
 					<section>
 							<h3>comandos</h3>
 							<p>
-								ejecuta una acción si se llama a /comando 
+								ejecuta una acción si se llama a /comando
 							</p>
-							
+
 							<h3></h3>
 							<pre><code class="hljs">
 @bot.message_handler(commands=['comando'])
@@ -475,15 +475,15 @@ def handle_start(message):
 	#ejemplo de como obtener argumentos de /comando arg1 arg2
 	args = message.text.split()[1:]
 							</code></pre>
-								
+
 					</section>
 
 					<section>
 						<h3>archivos</h3>
 						<p>
-							solo entra en la función si es un archivo del tipo deseado 
+							solo entra en la función si es un archivo del tipo deseado
 						</p>
-						
+
 						<h3></h3>
 						<pre><code class="hljs">
 @bot.message_handler(content_types=['voice'])
@@ -494,27 +494,27 @@ def handle_docs_audio(message):
 	with open('new_file.ogg', 'wb') as new_file:
 		new_file.write(downloaded_file)
 						</code></pre>
-							
+
 					</section>
 
 					<section>
 							<h3>Regular Expresions</h3>
-							
+
 							<h3></h3>
 							<pre><code class="hljs">
 @bot.message_handler(regexp="SOME_REGEXP")
 def handle_message(message):
 	pass
 							</code></pre>
-								
+
 					</section>
 
 					<section>
 							<h3>Nuevas Funciones</h3>
 							<p>
-								podemos definir una funcion que devuelva un Boolean para filtrar los mensajes que entran 
+								podemos definir una funcion que devuelva un Boolean para filtrar los mensajes que entran
 							</p>
-							
+
 							<h3></h3>
 							<pre><code class="hljs">
 def my_filter():
@@ -524,7 +524,7 @@ def my_filter():
 def handle_text_doc(message)
 	pass
 							</code></pre>
-								
+
 					</section>
 
 				</section>
@@ -548,7 +548,7 @@ def handle_text_doc(message)
 
 					<section>
 							<h3>Solución propuesta</h3>
-							
+
 							<h3></h3>
 							<pre><code class="hljs">
 from queue import Queue
@@ -558,7 +558,7 @@ photos = Queue()
 @bot.message_handler(content_types=['photo'])
 def store_photo(message):
     photos.put(message.photo[1].file_id)
-    
+
 
 @bot.message_handler(commands=['get'])
 def get_photo(message):
@@ -566,7 +566,7 @@ def get_photo(message):
     bot.send_photo(message.chat.id , photo_id)
 
 							</code></pre>
-								
+
 					</section>
 					<section>
 							<h3>Solución propuesta</h3>
@@ -580,14 +580,14 @@ photos = Queue()
 @bot.message_handler(content_types=['photo'])
 def store_photo(message):
     photos.put(message.photo[1].file_id)
-    
+
 @bot.message_handler(func=lambda message: message.from_user.username == 'antooro', commands=["get"])
 def get_photo(message):
     photo_id = photos.get()
     bot.send_photo(message.chat.id , photo_id)
 
 							</code></pre>
-								
+
 					</section>
 					<section>
 							<h3>Solución propuesta</h3>
@@ -605,21 +605,73 @@ def store_photo(message):
         lista[message.from_user.id] = photos
     lista[message.from_user.id].put(message.photo[1].file_id)
 
-	
+
 @bot.message_handler(commands=["get"])
 def get_photo(message):
     if message.from_user.id in lista :
         photo_id = lista[message.from_user.id].get()
         bot.send_photo(message.chat.id , photo_id)
     else:
-        bot.send_message(message.chat.id, "No tienes nada en la cola")    
+        bot.send_message(message.chat.id, "No tienes nada en la cola")
 
 
 							</code></pre>
-								
+
 					</section>
 
 				</section>
+
+				<section>
+					<section>
+						<h3>Botones</h3>
+						<p>
+							podemos añadir botones para hacer más interactivo el uso del bot
+						</p>
+					</section>
+					<section>
+						<h3>Como crear una botonera sencilla con un texto determinado</h3>
+						<pre><code class="hljs">
+@bot.message_handler(content_types=['buttons'])
+def keyboard(message):
+	markup = types.InlineKeyboardMarkup()
+	markup.add(types.InlineKeyboardButton("Links", callback_data="Prueba 1"))
+	markup.add(types.InlineKeyboardButton("Mensaje personalizado", callback_data="Prueba 2"))
+	markup.add(types.InlineKeyboardButton("Foto", callback_data="Prueba 3"))
+	bot.reply_to(self, "Aquí va el texto que queremos poner en el mensaje de los botones", reply_markup=markup)
+						</code></pre>
+					</section>
+					<section>
+						<h3>Prueba 1: botones con links</h3>
+						<pre><code class="hljs">
+@bot.callback_query_handler(func=lambda call: call.data == 'Prueba 1')
+def get_links(call):
+    markup = types.InlineKeyboardMarkup()
+    markup.add(types.InlineKeyboardButton("Google", url="http://www.google.com"))
+    markup.add(types.InlineKeyboardButton("Yahoo", url="http://www.yahoo.com"))
+    bot.edit_message_text("Aquí tienes los links chavalote", call.from_user.id, call.message.message_id, reply_markup=markup)
+						</code></pre>
+					</section>
+					<section>
+						<h3>Prueba 2: envio de mensaje personalizado</h3>
+						<pre><code class="hljs">
+@bot.callback_query_handler(func=lambda call: call.data == 'Prueba 2')
+def get_mssg_boton(call):
+	markup = types.InlineKeyboardMarkup()
+	bot.edit_message_text("Este es el mensaje personalizado que recibimos al pulsar el botón", call.from_user.id, call.message.message_id)
+						</code></pre>
+					</section>
+					<section>
+						<h3>Prueba 3: manejo de funciones del bot</h3>
+						<pre><code class="hljs">
+@bot.callback_query_handler(func=lambda call: call.data == 'Prueba 3')
+def get_photo_button(call):
+	bot.edit_message_text("Aquí tienes la foto", call.from_user.id, call.message.message_id)
+	photo_id = photos.get_nowait()
+	bot.send_photo(call.chat.id , photo_id)
+						</code></pre>
+					</section>
+				</section>
+
 				<section>
 					<h2>Pretty Code</h2>
 					<pre><code class="hljs" data-trim contenteditable>
