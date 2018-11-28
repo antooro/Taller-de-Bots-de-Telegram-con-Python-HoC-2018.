@@ -673,155 +673,88 @@ def get_photo_button(call):
 				</section>
 
 				<section>
-					<h2>Pretty Code</h2>
-					<pre><code class="hljs" data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
+					<section>
+						<h3>Un ejemplo concreto sobre botones</h3>
+					</section>
+					<section>
+						<h3>Preparando el terreno</h3>
+						<p>
+							Creamos unas variables globales para almacenar y mantener los datos
+						</p>
+						<pre><code class="hljs">
+markup_sumas = types.InlineKeyboardMarkup()
+sumatorio = 0
+						</code></pre>
+					</section>
+					<section>
+						<h3>Creamos la función con el teclado</h3>
+						<pre><code class="hljs">
+@bot.message_handler(commands=['sumar'])
+def test_sumar(self):
+	text = 'Número acumulado: 0'
+	global markup_sumas
+	markup_sumas = types.InlineKeyboardMarkup()
 
-    var nodes = document.querySelectorAll( selector );
+	#Primera fila de la botonera
+	a=[]
+	a.append(types.InlineKeyboardButton('7' ,callback_data='7'))
+	a.append(types.InlineKeyboardButton('8' ,callback_data='8'))
+	a.append(types.InlineKeyboardButton('9' ,callback_data='9'))
 
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
+	#Segunda fila de la botonera
+	b=[]
+	b.append(types.InlineKeyboardButton('4' ,callback_data='4'))
+	b.append(types.InlineKeyboardButton('5' ,callback_data='5'))
+	b.append(types.InlineKeyboardButton('6' ,callback_data='6'))
 
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+	#Tercera fila de la botonera
+	c=[]
+	c.append(types.InlineKeyboardButton('1' ,callback_data='1'))
+	c.append(types.InlineKeyboardButton('2' ,callback_data='2'))
+	c.append(types.InlineKeyboardButton('3' ,callback_data='3'))
+
+	#Última fila de la botonera
+	d=[]
+	d.append(types.InlineKeyboardButton('Listo' ,callback_data="sumar"))
+
+	#Añadimos las filas creadas al teclado definido
+	markup_sumas.row(*a)
+	markup_sumas.row(*b)
+	markup_sumas.row(*c)
+	markup_sumas.row(*d)
+
+	#Devolvemos el mensaje
+	bot.reply_to(self, text, reply_markup=markup_sumas)
+						</code></pre>
+					</section>
+					
+					<section>
+						<h3>Creamos la funcion</h3>
+						<p>
+							La funcion detecta el valor pulsado y lo trata según convenga
+						</p>
+						<pre><code class="hljs">
+@bot.callback_query_handler(func=lambda call: '1'or'2'or'3'or'4'or'5'or'6'or'7'or'8'or'9'or'sumar' in call.data)
+def get_mssg_numero(call):
+        global sumatorio
+        if(call.data == 'sumar'):
+            bot.edit_message_text("Este es el número final: "+str(sumatorio), call.from_user.id, call.message.message_id)
+        else:
+            sumatorio += int(call.data)
+            bot.edit_message_text("Número acumulado: "+str(sumatorio), call.from_user.id, call.message.message_id,reply_markup=markup_sumas)
+						</code></pre>
+					</section>
+					
+					<section>
+						<h3>Este sería el resultado final</h3>
+						<img src="1.png">
+						<img src="2.png">
+						<img src="3.png">
+					</section>
 				</section>
-
+				
 				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							</tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							</tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							</tr>
-						</tbody>
-					</table>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">The nice thing about standards is that there are so many to choose from</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Speaker View</h2>
-					<p>There's a <a href="https://github.com/hakimel/reveal.js#speaker-notes">speaker view</a>. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
-
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-					<iframe data-src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-				</section>
-
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the page background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
-				</section>
-
-				<section>
-					<h2>Much more</h2>
-					<ul>
-						<li>Right-to-left support</li>
-						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
-					</ul>
-				</section>
-
-				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="https://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
+					<h3>Ahora te toca a tí. Deja fluir tu imaginación y crea el mejor bot que puedas</h3>
 				</section>
 
 			</div>
